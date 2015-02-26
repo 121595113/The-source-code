@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width" />
+  
+  <title>刮刮乐</title>
+
+  <!-- filestart -->
+
+  <link rel="Stylesheet" type="text/css" href="./css/demo.css" />
+  <script type="text/javascript" src="./js/jquery.1.11.0.min.js"></script>
+  <!-- fileend -->
+</head>
+<body>
+  <!-- headstart -->
+ 
+  <!-- headend -->
+  <div id="content">
+    <h1 id="plugin-name">wScratchPad.js</h1>
+
+    <div class="content-box">
+
+      <div id="demo1" class="scratchpad"></div>
+      <div id="demo1-percent">&nbsp;</div>
+      <input type="button" value="Reset" onclick="$('#demo1').wScratchPad('reset');"/>
+      <input type="button" value="Clear" onclick="$('#demo1').wScratchPad('clear');"/>
+      <input type="button" value="Enable" onclick="$('#demo1').wScratchPad('enable', true);"/>
+      <input type="button" value="Disable" onclick="$('#demo1').wScratchPad('enable', false);"/>
+
+      <h3>面积超过50%时自动清除</h3>
+      <div id="demo2" class="scratchpad"></div>
+      <div id="demo2-percent">&nbsp;</div>
+      <input type="button" value="Reset" onclick="$('#demo2').wScratchPad('reset');"/>
+      <input type="button" value="Clear" onclick="$('#demo2').wScratchPad('clear');"/>
+      <input type="button" value="Enable" onclick="$('#demo2').wScratchPad('enable', true);"/>
+      <input type="button" value="Disable" onclick="$('#demo2').wScratchPad('enable', false);"/>
+      
+      <style>
+        .scratchpad{
+          width: 35%;
+          height: 100px;
+          border: solid 1px;
+        }
+
+        @media (max-width: 500px) {
+          .scratchpad {
+            width: 65%;
+          }
+
+        }
+      </style>
+
+      <script type="text/javascript" src="./js/wScratchPad.min.js"></script>
+      <script type="text/javascript">
+        $('#demo1').wScratchPad({
+          bg: './images/winner.png',
+          fg: './images/scratch-to-win.png',
+          'cursor': 'url("./cursors/coin.png") 5 5, default',
+          scratchMove: function (e, percent) {
+            $('#demo1-percent').html(percent);
+          }
+        });
+
+        $('#demo2').wScratchPad({
+          bg: './images/winner.png',
+          fg: './images/scratch-to-win.png',
+          'cursor': 'url("./cursors/mario.png") 5 5, default',
+          scratchMove: function (e, percent) {
+            $('#demo2-percent').html(percent);
+
+            if (percent > 50) {
+              this.clear();
+            }
+          }
+        });
+      </script>
+      
+    </div>
+  </div>
+
+  <!-- footstart -->
+  <footer>
+    
+  </footer>
+  <!-- footend -->
+</body>
+</html>
