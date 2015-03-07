@@ -104,11 +104,11 @@ Lottery.prototype = {
     drawPoint: function (x, y, fresh) {
         this.maskCtx.beginPath();
         this.maskCtx.arc(x, y, 30, 0, Math.PI * 2);
+        this.maskCtx.closePath();
         this.maskCtx.fill();
 
     	// 蒙板-路径还是记录
         this.maskCtx.beginPath();
-
         // 画笔大小
         this.maskCtx.lineWidth = 60;
         // 前者是线的末端样式，后者是线连接处的样式---圆
@@ -120,7 +120,6 @@ Lottery.prototype = {
         }
         this.maskCtx.lineTo(x, y);
         this.maskCtx.stroke();
-
         this.lastPosition = [x,y];
 
         this.mask.style.zIndex = (this.mask.style.zIndex == 20) ? 21 : 20;
@@ -137,10 +136,8 @@ Lottery.prototype = {
             var isMouseDown = false;
             _this.conNode.addEventListener('mouseup', function(e) {
                 e.preventDefault();
-
                 isMouseDown = false;
                 var per = _this.getTransparentPercent(_this.maskCtx, _this.width, _this.height);
-
                 if(per>=40){
                     // 执行回调函数
                     if(typeof(_this.drawPercentCallback)=='function') _this.drawPercentCallback();
@@ -169,7 +166,6 @@ Lottery.prototype = {
 
             // 记录开始move
             isMouseDown = true;
-
             var x = (device ? e.touches[0].pageX : e.pageX||e.x);
             var y = (device ? e.touches[0].pageY : e.pageY||e.y);
 
