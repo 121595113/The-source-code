@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>ÎÞ±êÌâÎÄµµ</title>
+		<Style>
+			h1 {
+				counter-increment: headers;/*第一个计数器*/
+				counter-reset: subsections;/*重置第二个计数器*/
+			}
+			h1:before {
+				content: counter(headers, upper-roman);/*这里可以接受两个参数，第一个必填：计数器的名称，第二个为选填：list-style-type的值，具体为decimal | decimal-leading-zero | lower-alpha | lower-greek | lower-roman | upper-alpha | upper-roman | lower-latin | upper-latin | hebrew | georgian*/
+				color:red;
+			}
+			h2 {
+				counter-increment: subsections;/*第二个计数器*/
+			}
+			h2:before {
+				content: counter(headers, upper-roman) "." counter(subsections, decimal-leading-zero) ":";
+			}
+		</Style>
+	</head>
+
+	<body>
+		<h1>第一个标题</h1>
+		<h2>章节</h2>
+		<p>文字....</p>
+		<h2>另一个章节</h2>
+		<p>文字....</p>
+		<h2>再一个章节</h2>
+		<p>文字....</p>
+		<h1>另一个标题</h1>
+		<h2>章节</h2>
+		<p>文字....</p>
+		<h2>另一个章节</h2>
+		<p>文字....</p>
+		<h2>再一个章节</h2>
+		<p>文字....</p>
+	</body>
+
+</html>
